@@ -1,4 +1,6 @@
 jotus-photo
 ===========
 
-The responsive photo-centric WordPress them for JewlOfTheLotus.com
+The responsive photo-centric WordPress theme for JewlOfTheLotus.com
+
+![](screenshot.png)
