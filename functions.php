@@ -70,99 +70,83 @@ function jotus_post_class( $print = true ) {
 }
 $jotus_post_index = 1;
 
-// Post Attachment image function. Image URL for CSS Background.
-function the_post_image_url($size='medium') {
-	global $post;
-	$linkedimgurl = get_post_meta ($post->ID, 'image_url', true);
-
-	if ( $linkedimgurl ) {
-
-		echo $linkedimgurl;
-
-	} elseif ( $images = get_children(array(
-		'post_parent' => get_the_ID(),
-		'post_type' => 'attachment',
-		'numberposts' => 1,
-		'post_mime_type' => 'image',)))
-	{
-		foreach( $images as $image ) {
-			$attachmenturl=wp_get_attachment_image_src($image->ID, $size);
-			$attachmenturl=$attachmenturl[0];
-			$attachmentimage=wp_get_attachment_image( $image->ID, $size );
-
-			echo ''.$attachmenturl.'';
-		}
-
-	} else {
-		echo '' . get_bloginfo ( 'stylesheet_directory' ) . '/img/no-attachment.gif';
-	}
-}
-
-// Post Attachment image function. Direct link to file.
-function the_post_image($size='thumbnail') {
-
+// Generate a CSS background from image meta
+function the_post_background() {
     global $post;
-    $linkedimgtag = get_post_meta ($post->ID, 'image_tag', true);
 
-    if ( $images = get_children(array(
-        'post_parent' => get_the_ID(),
-        'post_type' => 'attachment',
-        'numberposts' => 1,
-        'post_mime_type' => 'image',)))
-        {
-        foreach( $images as $image ) {
-            $attachmenturl=wp_get_attachment_url($image->ID);
-            $attachmentimage=wp_get_attachment_image( $image->ID, $size );
+    // if an image_url is set in the post meta, use it
+    $image_url = get_post_meta( $post->ID, 'image_url', true );
+    $image_pos = get_post_meta( $post->ID, 'image_pos', true ) ?: 'center center';
 
-            echo ''.$attachmentimage.'';
+    if ( $image_url == '' ) {
+        // find first post attachment or image w/in content
+        $image_url = first_image_url();
+
+        if ( $image_url == '' ) {
+            $image_url = get_bloginfo ( 'stylesheet_directory' ) . '/img/no-attachment.gif';
         }
-
-    } elseif ( $linkedimgtag ) {
-
-        echo $linkedimgtag;
-
-    } elseif ( $linkedimgtag && $images = get_children(array(
-        'post_parent' => get_the_ID(),
-        'post_type' => 'attachment',
-        'numberposts' => 1,
-        'post_mime_type' => 'image',)))
-        {
-        foreach( $images as $image ) {
-            $attachmenturl=wp_get_attachment_url($image->ID);
-            $attachmentimage=wp_get_attachment_image( $image->ID, $size );
-
-            echo ''.$attachmentimage.'';
-        }
-
-    } else {
-        echo '<img src="' . get_bloginfo ( 'stylesheet_directory' ) . '/img/no-attachment-large.gif" />';
     }
+
+    echo "background: url($image_url) $image_pos repeat;";
 }
 
-// Setup Images for Attachment functions
-function image_setup($postid) {
-	global $post;
-	$post = get_post($postid);
+// Setup image meta on save
+function image_setup( $postid ) {
+    global $post;
+    $post = get_post( $postid );
 
-	// get url
-	if ( !preg_match('/<img ([^>]*)src=(\"|\')(.+?)(\2)([^>\/]*)\/*>/', $post->post_content, $matches) ) {
-		return false;
-	}
+    $image_url = get_post_meta( $post->ID, 'image_url', true );
+    $image_pos = get_post_meta( $post->ID, 'image_pos', true );
 
-	// url setup
-	$post->image_url = $matches[3];
-	if ( !$post->image_url = preg_replace('/\?w\=[0-9]+/','', $post->image_url) )
-		return false;
+    if ( $image_url == '' ) {
+        // find first post attachment or image w/in content
+        $url = first_image_url( $postid );
+        add_post_meta( $post->ID, 'image_url', $url );
+    }
 
-	$post->image_url = clean_url( $post->image_url, 'raw' );
-
-	delete_post_meta($post->ID, 'image_url');
-	delete_post_meta($post->ID, 'image_tag');
-
-	add_post_meta($post->ID, 'image_url', $post->image_url);
-	add_post_meta($post->ID, 'image_tag', '<img src="'.$post->image_url.'" />');
+    if ( $image_pos == '' ) {
+        add_post_meta( $post->ID, 'image_pos', 'center center' );
+    }
 }
 add_action('publish_post', 'image_setup');
 add_action('publish_page', 'image_setup');
+
+// Find the first post image if one isn't set in meta
+function first_image_url( $postid = null ) {
+    global $post;
+
+    if ( $postid ) {
+        $post = get_post( $postid );
+    }
+
+    $image_size = is_search() ? 'medium' : 'large';
+
+    // find an image attachment
+    if ( $post_image = get_children( array(
+        'post_parent' => get_the_ID(),
+        'post_type' => 'attachment',
+        'numberposts' => 1,
+        'post_mime_type' => 'image'
+       ) ) ) {
+        foreach ( $post_image as $image ) {
+            $url = wp_get_attachment_image_src( $image->ID, $image_size );
+            $url = $url[0];
+        }
+
+    // find an image in the content
+    } else {
+        if ( !preg_match( '/<img ([^>]*)src=(\"|\')(.+?)(\2)([^>\/]*)\/*>/', $post->post_content, $matches ) ) {
+            return '';
+        }
+
+        $url = $matches[3];
+        if ( !$url = preg_replace( '/\?w\=[0-9]+/','', $url ) )
+            return '';
+
+        $url = clean_url( $url, 'raw' );
+    }
+
+    return $url;
+}
 
 ?>

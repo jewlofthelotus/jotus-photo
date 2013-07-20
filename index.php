@@ -12,7 +12,7 @@
 
                 <a class="post-link" href="<?php the_permalink() ?>"></a>
 
-                <span class="post-image" style="background:url('<?php the_post_image_url(is_search() ? 'medium' : 'large'); ?>') center center repeat">&nbsp;</span>
+                <span class="post-image" style="<?php the_post_background() ?>">&nbsp;</span>
 
                 <div class="post-content">
                     <h3><?php the_title() ?></h3>
