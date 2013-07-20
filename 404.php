@@ -1,20 +1,20 @@
 <?php get_header() ?>
 
-	<div id="container">
-		<div id="content">
+<div class="wrapper main">
+    <div class="content">
+        <div class="post error404">
+            <h2 class="post-title"><?php _e('Page Not Found', 'jotus') ?></h2>
 
-			<div id="post-0" class="post error404">
-				<div class="category">
-<h2 class="entry-title"><?php _e('Not Found', 'sandbox') ?></h2></div>
-					<div class="entry-content">
-						<p><?php _e('Apologies, but we were unable to find what you were looking for. Perhaps browseing the archive will help.', 'sandbox') ?></p>
-					</div>
-					<div class="archive-content">
-						<?php get_sidebar() ?>
-					</div><!-- .archive-content -->
-			</div><!-- .post -->
+            <div class="post-content">
+                <p><?php _e('Sorry! The page you\'re looking for is lost somewhere out in the abyss!', 'jotus') ?></p>
+                <p><?php _e('Maybe try browsing through some tags or trying a keyword search below.', 'jotus') ?></p>
+            </div>
 
-		</div><!-- #content -->
-	</div><!-- #container -->
+            <div class="footer_widgets">
+<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('404 Widgets') ) : else : endif; ?>
+            </div>
+        </div>
+    </div>
+</div>
 
 <?php get_footer() ?>

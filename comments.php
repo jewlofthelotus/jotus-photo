@@ -1,20 +1,20 @@
-			<div class="comments">
+            <div class="comments">
 
 <?php
-	if ( 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) )
-		die ( 'Please do not load this page directly. Thanks!' );
+    if ( 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) )
+        die ( 'Please do not load this page directly. Thanks!' );
 
-	$req = get_option('require_name_email'); // Checks if fields are required.
+    $req = get_option('require_name_email'); // Checks if fields are required.
 
-	if ( ! empty($post->post_password) ) :
-		if ( $_COOKIE['wp-postpass_' . COOKIEHASH] != $post->post_password ) :
+    if ( ! empty($post->post_password) ) :
+        if ( $_COOKIE['wp-postpass_' . COOKIEHASH] != $post->post_password ) :
 ?>
-				<div class="nopassword"><?php _e('This post is password protected. Enter the password to view any comments.', 'your-theme') ?></div>
-			</div><!-- .comments -->
+                <div class="nopassword"><?php _e('This post is password protected. Enter the password to view any comments.', 'your-theme') ?></div>
+            </div><!-- .comments -->
 <?php
-			return;
-		endif;
-	endif;
+            return;
+        endif;
+    endif;
 ?>
 
 <?php if ( have_comments() ) : ?>
@@ -22,25 +22,25 @@
 <?php
 $ping_count = $comment_count = 0;
 foreach ( $comments as $comment )
-	get_comment_type() == "comment" ? ++$comment_count : ++$ping_count;
+    get_comment_type() == "comment" ? ++$comment_count : ++$ping_count;
 ?>
 
 <?php if ( ! empty($comments_by_type['comment']) ) : ?>
-				<div class="comments-list">
-					<h3>
-						<?php printf($comment_count > 1 ? __('<span>%d</span> Comments', 'your-theme') : __('<span>One</span> Comment', 'your-theme'), $comment_count) ?> |
-						<?php printf(__('<a class="comment-link" href="#respond" title="Post a comment">Post a comment</a>', 'sandbox')) ?>
-					</h3>
+                <div class="comments-list">
+                    <h3>
+                        <?php printf($comment_count > 1 ? __('<span>%d</span> Comments', 'your-theme') : __('<span>One</span> Comment', 'your-theme'), $comment_count) ?> |
+                        <?php printf(__('<a class="comment-link" href="#respond" title="Post a comment">Post a comment</a>', 'jotus')) ?>
+                    </h3>
 
 <?php $total_pages = get_comment_pages_count(); if ( $total_pages > 1 ) : ?>
-					<nav class="nav-above">
-						<div class="paginated-links"><?php paginate_comments_links(); ?></div>
-					</nav>
+                    <nav class="nav-above">
+                        <div class="paginated-links"><?php paginate_comments_links(); ?></div>
+                    </nav>
 <?php endif; ?>
 
-					<ol>
+                    <ol>
 <?php wp_list_comments('type=comment'); ?>
-					</ol>
+                    </ol>
 
 <?php $total_pages = get_comment_pages_count(); if ( $total_pages > 1 ) : ?>
                     <nav class="nav-below">
@@ -104,15 +104,15 @@ foreach ( $comments as $comment )
 
 <?php do_action('comment_form', $post->ID); ?>
 
-						<div class="form-submit">
+                        <div class="form-submit">
                             <input id="submit" name="submit" type="submit" value="<?php _e('Post Comment', 'your-theme') ?>" tabindex="7" />
                             <input type="hidden" name="comment_post_ID" value="<?php echo $id; ?>" />
                         </div>
 
 <?php comment_id_fields(); ?>
 
-					</form>
+                    </form>
 <?php endif /* if ( get_option('comment_registration') && !$user_ID ) */ ?>
-				</div><!-- #respond -->
+                </div><!-- #respond -->
 <?php endif /* if ( 'open' == $post->comment_status ) */ ?>
-			</div><!-- .comments -->
+            </div><!-- .comments -->
