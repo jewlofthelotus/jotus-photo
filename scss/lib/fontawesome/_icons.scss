@@ -1,0 +1,16 @@
+/* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
+ * readers do not read off random characters that represent icons */
+
+.icon-twitter:before { content: $twitter; }
+.icon-facebook:before { content: $facebook; }
+.icon-github:before { content: $github; }
+.icon-rss:before { content: $rss; }
+.icon-pinterest:before { content: $pinterest; }
+.icon-google-plus:before { content: $google-plus; }
+.icon-linkedin:before { content: $linkedin; }
+.icon-beer:before { content: $beer; }
+.icon-html5:before { content: $html5; }
+.icon-css3:before { content: $css3; }
+.icon-youtube:before { content: $youtube; }
+.icon-instagram:before { content: $instagram; }
+.icon-flickr:before { content: $flickr; }

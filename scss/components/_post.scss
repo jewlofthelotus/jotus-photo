@@ -1,0 +1,402 @@
+.post-list {
+    @extend %clearfix;
+}
+
+.post-date {
+    background: $postDate;
+    color: #fff;
+    font-family: $fontSerif;
+    margin: -10px 0 0 -10px;
+    padding: 5px 15px;
+    position: absolute;
+    text-align: center;
+    text-shadow: 2px 2px 2px rgba(#333, .8);
+    visibility: visible;
+    z-index: 3000;
+    @include box-shadow(-2px -2px 0 adjust-lightness($postDate, -5%),
+                         2px 2px 0 rgba(#333, .5));
+
+    span {
+        display: block;
+
+        &.day {
+            @include adjust-font-size-to($xx-large-px, 1.5);
+        }
+        &.month {
+            @include adjust-font-size-to($x-large-px, 1.5);
+        }
+    }
+}
+
+.post-link {
+    display: block;
+    height: 100%;
+    line-height: 1em;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 4000;
+
+    &:hover {
+        border-bottom: none;
+    }
+}
+
+// Featured Style List
+.home,
+.category,
+.tag {
+    .content {
+        background: adjust-lightness($background, -5%);
+        padding: 5px;
+        margin: -5px;
+    }
+
+    .post-content {
+        @extend %hover-transition;
+        background: #FFF;
+        bottom: 0;
+        color: #333;
+        left: 0;
+        padding: 10px;
+        position: absolute;
+        right: 0;
+        visibility: hidden;
+        @include opacity(0);
+
+        h3,
+        p {
+            @include rhythm(0,0,0,0);
+        }
+
+        h3 {
+            @include trailer(.2);
+        }
+
+        p {
+            @include adjust-font-size-to($small-px, .8);
+        }
+
+        @media (max-width: $tab-end) {
+            visibility: visible;
+            @include opacity(.7);
+
+            h3 {
+                margin-bottom: 0;
+            }
+
+            p {
+                display: none;
+            }
+        }
+    }
+
+    .post-image {
+        height: 300px;
+        display: block;
+    }
+
+    .post {
+        background: transparent url('img/loading.gif') center center no-repeat;
+        float: left;
+        height: 300px;
+        margin-bottom: 5px;
+        position: relative;
+        width: 25%;
+
+        &.p1 .post-content,
+        &:hover .post-content,
+        .post-content:hover {
+            @extend %hover-transition;
+            visibility: visible;
+            @include opacity(.8);
+        }
+
+        // Row 1 - Featured
+        &.p1 {width: 68.627451%;}   /* 700 / 1020 */
+        &.p2 {width: 30.8823529%;}  /* 315 / 1020 */
+        &.p1, &.p2,
+        &.p1 .post-image, &.p2 .post-image {
+            height: 450px;
+        }
+
+        &.p1 {
+            h3 {
+                @include adjust-font-size-to($xx-large-px);
+            }
+
+            p {
+                @include adjust-font-size-to($norm-px, 1);
+            }
+
+            @media (max-width: $tab-end) {
+                h3 {
+                    @include adjust-font-size-to($x-large-px, 1);
+                    @include trailer(.5, $x-large-px);
+                }
+
+                p {
+                    display: block;
+                }
+            }
+
+            @media (max-width: $palm-end) {
+                p {
+                    @include adjust-font-size-to($small-px, .75);
+                }
+            }
+        }
+
+        // Row 2
+        &.p3 {width: 50%;}          /* 510 / 1020*/
+        &.p4 {width: 49.5098039%;}  /* 505 / 1020*/
+
+        // Row 3
+        &.p5 {width: 37.745098%;}   /* 385 / 1020 */
+        &.p6 {width: 37.254902%;}   /* 380 / 1020 */
+        &.p7 {width: 24.0196078%;}  /* 245 / 1020 */
+
+        // Row 4
+        &.p8 {width: 25%;}          /* 255 / 1020 */
+        &.p9 {width: 43.1372549%;}  /* 440 / 1020 */
+        &.p10 {width: 30.8823529%;} /* 315 / 1020 */
+
+        &.p2,
+        &.p4,
+        &.p6,
+        &.p7,
+        &.p9,
+        &.p10 {
+            margin-left: 0.4901961%; /* 5 / 1020 */
+        }
+
+        @media (max-width: $tab-end) {
+            width: 50%;
+
+            &.p1 {
+                width: 100%;
+            }
+
+            &.p2,
+            &.p3,
+            &.p4,
+            &.p5,
+            &.p6,
+            &.p7 {
+                width: 49.5098039%;
+            }
+
+            &.p8,
+            &.p9,
+            &.p10 {
+                width: 50%;
+            }
+
+            &.p2,
+            &.p4,
+            &.p6,
+            &.p8,
+            &.p9,
+            &.p10 {
+                margin-left: 0;
+            }
+
+            &.p3,
+            &.p5,
+            &.p7 {
+                margin-left: 0.9803922%; /* 5 / 1020 */
+            }
+
+            &.p2,
+            &.p2 .post-image {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: $palm-end) {
+            margin-bottom: 40px;
+            margin-left: 0;
+            width: 100%;
+
+            &.p2,
+            &.p3,
+            &.p4,
+            &.p5,
+            &.p6,
+            &.p7,
+            &.p8,
+            &.p9,
+            &.p10 {
+                width: 100%;
+                margin-left: 0;
+            }
+
+            .post-content {
+                visibility:visible;
+                @include opacity(.7);
+            }
+        }
+    }
+
+    @media (max-width: $palm-end) {
+        .content {
+            background: none;
+            margin: -10px;
+
+            .post {
+                border: 5px solid adjust-lightness($background, -5%);
+                float: none;
+                margin-bottom: 20px;
+                width: auto;
+            }
+        }
+    }
+}
+
+// Search Style List
+.search {
+    .content {
+        margin: -5px;
+    }
+
+    .post {
+        @extend %clearfix;
+        background: adjust-lightness($background, -5%);
+        position: relative;
+        @include trailer(1);
+
+        &:hover .post-content,
+        .post-content:hover {
+            @extend %hover-transition;
+            color: $linkInteractionColor;
+        }
+    }
+
+    .post-date {
+        margin: -5px 0 0 -5px;
+    }
+
+    .post-image {
+        float: left;
+        height: 150px;
+        margin: 15px 1.4705882%;
+        width: 29.4117647%; /* 300 / 1020 */
+
+        @media (max-width: $palm-end) {
+            display: block;
+            float: none;
+            margin: 15px 15px;
+            width: auto;
+        }
+    }
+
+    .post-link {
+        display: auto;
+        bottom: 0;
+    }
+
+    .post-content {
+        float: left;
+        height: auto;
+        margin: 15px 1.4705882% 15px 0;
+        width: 66.1764706%;
+
+        h3 {
+            @include adjust-font-size-to($large-px, 1);
+            @include leader(.5, $large-px);
+            @include trailer(.5, $large-px);
+        }
+
+        @media (max-width: $tab-end) {
+            h3 {
+                @include adjust-font-size-to($med-px, .75);
+            }
+
+            p {
+                @include adjust-font-size-to($small-px, .75);
+            }
+        }
+
+        @media (max-width: $palm-end) {
+            clear: left;
+            float: none;
+            margin: 15px 15px;
+            width: auto;
+        }
+    }
+}
+
+// Single Post View
+.page,
+.single {
+    .content {
+        background: #fff;
+        border: 5px solid adjust-lightness($background, -5%);
+        color: $black;
+        margin: -5px;
+    }
+
+    .post {
+        margin: 50px;
+
+        @media (max-width: $palm-end) {
+            margin: 50px 30px;
+        }
+
+        img.alignright,
+        img.alignleft,
+        .alignright img,
+        .alignleft img {
+            height: auto;
+            max-width: 1280px;
+            width: auto;
+        }
+
+        img.aligncenter,
+        img.alignnone {
+            height: auto;
+            max-width: 1280px;
+            width: 100%;
+        }
+    }
+
+    .post-date {
+        left: 0;
+        top: 110px;
+    }
+
+    .post-title {
+        margin-left: 50px;
+        margin-top: -35px;
+        @include adjust-font-size-to($xx-large-px);
+        @include trailer(.5);
+
+        @media (max-width: $tab-end) {
+            @include adjust-font-size-to($x-large-px, 1.5);
+        }
+
+        @media (max-width: $palm-end) {
+            margin-left: 70px;
+            @include adjust-font-size-to($large-px, 1.5);
+        }
+    }
+
+    .post-meta {
+        color: #A6AAAA;
+        @include adjust-font-size-to($small-px, .75);
+        @include leader(2);
+    }
+}
+
+.page {
+    .post {
+        margin-top: 30px;
+    }
+
+    .post-title {
+        margin-left: 0;
+        margin-top: 0;
+    }
+}

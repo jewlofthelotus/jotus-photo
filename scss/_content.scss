@@ -1,0 +1,72 @@
+%hover-transition {
+    transition-property: background border color font-size font-weight opacity text-decoration visibility;
+    transition-duration: .3s;
+    transition-timing-function: linear;
+}
+
+// Headers
+h1, h2, h3, h4, h5, h6 {
+    font-family: $fontHeaders;
+}
+h1 {
+    @include adjust-font-size-to($x-large-px);
+    @include trailer(1, $x-large-px);
+}
+
+h2 {
+    @include adjust-font-size-to($large-px);
+    @include trailer(1, $large-px);
+}
+
+h3 {
+    @include adjust-font-size-to($med-px);
+    @include trailer(1, $med-px);
+}
+
+h4 {
+    @include adjust-font-size-to($norm-px);
+    @include trailer(1, $norm-px);
+}
+
+// Links
+a {
+    @extend %hover-transition;
+    color: $linkColor;
+    text-decoration: none;
+
+    &:hover {
+        @extend %hover-transition;
+        border-bottom: 1px solid $linkColor;
+        color: $linkInteractionColor;
+    }
+}
+
+// Fancy color for when you select stuff! Change the color for your app.
+::-moz-selection {
+    background: #4F89A1;
+    color: #fff;
+    text-shadow: none;
+}
+
+::selection {
+    background: #4F89A1;
+    color: #fff;
+    text-shadow: none;
+}
+
+// Alignment Options
+.alignright {
+    float: right;
+    margin-left: 15px;
+}
+
+.alignleft {
+    float: left;
+    margin-right: 15px;
+}
+
+// Code Styling
+code {
+    padding: 3px;
+    background: rgba(255, 34, 34, .3);
+}

@@ -1,0 +1,84 @@
+// Vertical Rhythm & Modular Scale
+$base-font-size: 16px;
+$base-line-height: 24px;
+
+$base-size: $base-font-size $base-line-height;
+$ratio: fourth();
+
+/*
+ * At 16px $base-font-size your available modular scale values are:
+ *
+ ms(-5)  =   8px
+ ms(-4)  =   9px
+ ms(-3)  =  10px
+ ms(-1)  =  12px
+ ms(0)   =  16px
+ ms(1)   =  18px
+ ms(2)   =  21px
+ ms(3)   =  24px
+ ms(4)   =  28px
+ ms(5)   =  32px
+ ms(6)   =  38px
+ ms(7)   =  43px
+ ms(8)   =  51px
+ ms(9)   =  57px
+ ms(10)  =  67px
+ *
+ */
+
+@include establish-baseline;
+
+// Font Size Variables
+$xx-small-px:  ms(-5);
+$x-small-px:   ms(-3);
+$small-px:     ms(-1);
+$norm-px:      $base-font-size;
+$med-px:       ms(1);
+$large-px:     ms(3);
+$x-large-px:   ms(5);
+$xx-large-px:  ms(7);
+$xxx-large-px: ms(9);
+
+
+// Descriptive Colors
+$white: #ffffff;
+$black: #222222;
+
+$eggplant: #531946;
+$darkEggplant: #30162B;
+
+$pink: #E30842;
+
+$teal: teal;
+$blueTeal: #095169;
+$greenTeal: #074744;
+
+$lightOrange: #FFD191;
+$orange: #FC9A0F;
+
+
+// Functional Colors
+$background: $eggplant;
+$copy: $white;
+
+$headerBg: $darkEggplant;
+$footerBg: $greenTeal;
+
+$logoColor: $pink;
+
+$linkColor: $orange;
+$linkInteractionColor: $lightOrange;
+
+$postDate: $blueTeal;
+
+
+// Typefaces
+$fontSans: "Trebuchet MS", Verdana, Helvetica, Arial, sans-serif;
+$fontSerif: "Hoefler Text", "Georgia", Georgia, serif, serif;
+$fontLogo: 'Lily Script One', "Hoefler Text", "Georgia", fantasy, cursive;
+$fontHeaders: 'Open Sans Condensed', $fontSans;
+
+
+// Responsive Breakpoints
+$tab-end: 768px;
+$palm-end: 30.0625em; // 481px

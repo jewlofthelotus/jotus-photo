@@ -1,0 +1,14 @@
+/* FONT AWESOME CORE
+ * -------------------------- */
+
+[class^="icon-"],
+[class*=" icon-"] {
+  @include icon-FontAwesome();
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  text-decoration: inherit;
+  display: inline-block;
+  speak: none;
+}

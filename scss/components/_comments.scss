@@ -1,0 +1,156 @@
+.comments {
+    color: #BCCF9F;
+    background: adjust-lightness($background, -5%);
+    clear: both;
+    margin: -5px;
+    padding: 30px;
+    @include padding-leader(0);
+    @include padding-trailer(0);
+    @include trailer(.5);
+
+    @media (max-width: $palm-end) {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.comments-list {
+    h3 {
+        @include padding-leader(1);
+    }
+
+    ol {
+        list-style-type: none;
+        margin-top: 0;
+        padding: 0;
+    }
+
+    .nav-below {
+        background: adjust-lightness($blueTeal, -10%);
+        margin: 0 -30px;
+        padding: 1.5em 30px;
+    }
+
+    @media (max-width: $palm-end) {
+        h3,
+        .nav-above,
+        .nav-below {
+            background: adjust-lightness($blueTeal, -10%);
+            margin: 0 0;
+            padding-left: 1.5em;
+            @include rhythm(0,0,1,0);
+        }
+
+         h3,
+         .nav-below {
+            @include padding-leader(1);
+        }
+   }
+}
+
+.comment {
+    padding: 0 76px;
+    @include padding-leader(1);
+    @include padding-trailer(1);
+
+    @media (max-width: $tab-end) {
+        padding-right: 38px;
+    }
+
+    &.even {
+        background: adjust-lightness($background, -10%);
+    }
+
+    p {
+        @include leader(.5);
+        @include trailer(.5);
+    }
+
+    .comment-author {
+        margin-left: -52px;
+        @include adjust-leading-to(.75);
+
+        .avatar {
+            border: 5px solid adjust-lightness($background, -11%);
+            float: left;
+            margin-right: 10px;
+        }
+
+        cite {
+            display: block;
+            padding-top: 5px;
+        }
+
+        .says {
+            display: none;
+        }
+    }
+
+    .comment-meta {
+        margin-left: -52px;
+        @include adjust-leading-to(.75);
+
+        a {
+            @include adjust-font-size-to($small-px, .75);
+        }
+    }
+
+    .reply {
+        a {
+            @include adjust-font-size-to($small-px, .75);
+        }
+    }
+}
+
+.respond {
+    background: adjust-lightness($blueTeal, -10%);
+    margin: 0 -30px;
+    padding: 0 30px 30px;
+
+    @media (max-width: $palm-end) {
+        margin: 0 0;
+        padding: 0 1.5em 1.5em;
+    }
+
+    h3 {
+        margin-top: 0;
+        padding-top: 1em;
+    }
+
+    .form-section {
+        @include trailer(.5);
+
+        label {
+            display: block;
+        }
+
+        &.comment-notes {
+            @include adjust-font-size-to($small-px);
+        }
+
+        input {
+            width: 40%;
+        }
+
+        textarea {
+            width: 80%;
+        }
+
+        @media (max-width: $tab-end) {
+            input {
+                width: 60%;
+            }
+
+            textarea {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: $palm-end) {
+            input,
+            textarea {
+                width: 100%;
+            }
+        }
+    }
+}

@@ -1,0 +1,23 @@
+/*!
+THEME NAME: Jotus Photo
+THEME URI:http://github.com/jewlofthelotus/jotus-photo
+DESCRIPTION: Based on AutoFocus, Jotus Photos is a Wordpress theme specifically for photographers looking for a responsive and vibrant way to display their work online.
+VERSION:1.0.1
+AUTHOR:Julie Cameron
+AUTHOR URI:http://jewlofthelotus.com
+TAGS:photography, photoblogging, responsive, fluid, flexible-width
+*/
+
+@import "lib/normalize";
+@import "lib/fontawesome/font-awesome";
+
+@import "compass";
+@import "modular-scale";
+
+@import "vars";
+
+@import "content";
+@import "layout";
+
+@import "components/post";
+@import "components/comments";
