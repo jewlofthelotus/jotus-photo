@@ -114,5 +114,9 @@ foreach ( $comments as $comment )
                     </form>
 <?php endif /* if ( get_option('comment_registration') && !$user_ID ) */ ?>
                 </div><!-- #respond -->
+<?php else : ?>
+                <div class="respond" id="respond">
+                    <p>Sorry y'all. Comments are <em>closed</em>.</p>
+                </div>
 <?php endif /* if ( 'open' == $post->comment_status ) */ ?>
             </div><!-- .comments -->
