@@ -116,7 +116,7 @@ foreach ( $comments as $comment )
                 </div><!-- #respond -->
 <?php else : ?>
                 <div class="respond" id="respond">
-                    <p>Sorry y'all. Comments are <em>closed</em>.</p>
+                    <h3><em><?php _e('Sorry all. Comments are closed.', 'your-theme'); ?></em></h3>
                 </div>
 <?php endif /* if ( 'open' == $post->comment_status ) */ ?>
             </div><!-- .comments -->
