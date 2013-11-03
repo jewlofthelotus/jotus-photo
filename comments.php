@@ -28,8 +28,12 @@ foreach ( $comments as $comment )
 <?php if ( ! empty($comments_by_type['comment']) ) : ?>
                 <div class="comments-list">
                     <h3>
-                        <?php printf($comment_count > 1 ? __('<span>%d</span> Comments', 'your-theme') : __('<span>One</span> Comment', 'your-theme'), $comment_count) ?> |
-                        <?php printf(__('<a class="comment-link" href="#respond" title="Post a comment">Post a comment</a>', 'jotus')) ?>
+                        <?php printf($comment_count > 1 ? __('<span>%d</span> Comments', 'your-theme') : __('<span>One</span> Comment', 'your-theme'), $comment_count) ?>
+                        <?php if ( 'open' == $post->comment_status ) : ?>
+                         | <?php printf(__('<a class="comment-link" href="#respond" title="Post a comment">Post a comment</a>', 'jotus')) ?>
+                        <?php else : ?>
+                         | <em><?php _e("Comments are closed.") ?></em>
+                        <?php endif /* if ( 'open' == $post->comment_status ) */ ?>
                     </h3>
 
 <?php $total_pages = get_comment_pages_count(); if ( $total_pages > 1 ) : ?>
