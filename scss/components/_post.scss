@@ -339,6 +339,7 @@
     }
 
     .post {
+        @extend %clearfix;
         margin: 50px;
 
         @media (max-width: $palm-end) {
